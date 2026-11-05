@@ -345,6 +345,7 @@ function render(){
         ${q.img?`<span class="pill">${q.formula?'fórmula na imagem':'com figura'}</span>`:''}
         ${q.formula?'<span class="pill alerta" title="Tem fração empilhada: o texto abaixo é aproximado, use a imagem como referência">conferir fórmula</span>':''}
         ${q.cortada?'<span class="pill alerta" title="O recorte original cortou parte do texto à direita">texto incompleto</span>':''}
+        ${q.fragmentada?'<span class="pill alerta" title="O enunciado pode ter fragmentos de outro recorte — confira antes de usar">revisar texto</span>':''}
         ${q.way?'':'<span class="pill naoexp" title="Discursiva, anulada ou sem alternativas legíveis">não exportável</span>'}
       </div>
       <div class="q-corpo">
