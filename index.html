@@ -105,6 +105,7 @@ ol.alts li{display:flex;gap:8px;padding:4px 6px;border-radius:5px;line-height:1.
 ol.alts li .rot{flex:none;font-weight:650;font-variant-numeric:tabular-nums;min-width:1.9em;color:var(--muted)}
 ol.alts li.ok{background:var(--accent-soft)}
 ol.alts li.ok .rot{color:var(--accent)}
+ol.alts li .naimg{color:var(--muted);font-style:italic;font-size:13px}
 .vazio{color:var(--muted);text-align:center;padding:60px 20px;font-size:14px}
 
 #carrinho{
@@ -332,8 +333,12 @@ function render(){
     `<b>${qs.length}</b> questões · ${qs.filter(q=>q.way).length} exportáveis · ${qs.filter(q=>q.img).length} com figura`;
   cont.innerHTML=qs.map(q=>{
     const on=SEL.has(q.id), cs=corretas(q);
-    const alts=(q.alts||[]).map(([r,t],i)=>
-      `<li class="${mostraGab&&cs.has(i)?'ok':''}"><span class="rot">${esc(r)})</span><span>${esc(t)}</span></li>`).join('');
+    // quando as alternativas foram para a imagem, repeti-las em texto só polui
+    const alts = q.img_alts
+      ? (q.alts||[]).map(([r],i)=>
+          `<li class="${mostraGab&&cs.has(i)?'ok':''}"><span class="rot">${esc(r)})</span><span class="naimg">na imagem acima</span></li>`).join('')
+      : (q.alts||[]).map(([r,t],i)=>
+          `<li class="${mostraGab&&cs.has(i)?'ok':''}"><span class="rot">${esc(r)})</span><span>${esc(t)}</span></li>`).join('');
     return `<article class="q${on?' sel':''}" data-id="${q.id}">
       <div class="q-top">
         <input type="checkbox" ${on?'checked':''} aria-label="Selecionar questão">
@@ -350,7 +355,7 @@ function render(){
       </div>
       <div class="q-corpo">
         <p class="enun">${esc(q.enun)}</p>
-        ${q.img?`<div class="q-fig"><img loading="lazy" src="img/${q.img}" width="${q.w}" height="${q.h}" alt="Figura da questão ${esc(q.n)}"></div>`:''}
+        ${q.img?`<div class="q-fig"><img loading="lazy" src="img/${q.img}" width="${q.w}" height="${q.h}" alt="${q.img_alts?'Alternativas':'Figura'} da questão ${esc(q.n)}"></div>`:''}
         ${alts?`<ol class="alts">${alts}</ol>`:''}
       </div>
     </article>`;
@@ -438,8 +443,10 @@ function gerarPdf(op){
   const base=location.href.replace(/[^/]*$/,'');
   const hoje=new Date().toLocaleDateString('pt-BR');
   const corpo=qs.map((q,i)=>{
-    const alts=(q.alts||[]).map(([r,t])=>
-      `<li><span class="r">${esc(r)})</span><span>${esc(t)}</span></li>`).join('');
+    const alts=(op.figuras&&q.img_alts)
+      ? ''   // as alternativas estão na imagem; repeti-las duplicaria a questão
+      : (q.alts||[]).map(([r,t])=>
+          `<li><span class="r">${esc(r)})</span><span>${esc(t)}</span></li>`).join('');
     return `<article class="q">
       <h3>Questão ${i+1}${op.fonte?` <span class="src">${esc(q.p)} · nº ${esc(q.n)} · ${esc(q.d)} — ${esc(q.a)}</span>`:''}</h3>
       <p class="en">${esc(q.enun)}</p>
