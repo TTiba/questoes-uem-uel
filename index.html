@@ -237,7 +237,11 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 fetch('dados.json').then(r=>r.json()).then(d=>{
   DADOS=d;
   try{ SEL=new Set(JSON.parse(localStorage.getItem(LS_SEL)||'[]')); }catch(e){}
-  const u=localStorage.getItem(LS_URL); if(u) document.getElementById('urlbase').value=u;
+  // pré-preenche com a própria origem quando a página está publicada
+  const auto = location.protocol.startsWith('http')
+    ? location.href.replace(/[^/]*$/,'')+'img/' : '';
+  const u=localStorage.getItem(LS_URL) || auto;
+  if(u) document.getElementById('urlbase').value=u;
   const exp=d.questoes.filter(q=>q.way).length;
   document.getElementById('tagtot').textContent=`${d.questoes.length} questões · ${exp} exportáveis`;
   montaArvore(); render(); atualizaCarrinho();
