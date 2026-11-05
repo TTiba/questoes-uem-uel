@@ -143,6 +143,7 @@ summary input{accent-color:var(--accent);margin:0}
   background:var(--bg);font-size:12.5px;min-width:230px;flex:1;max-width:420px;
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
 }
+#urlAviso{font-size:12px;color:var(--danger);font-weight:500;white-space:nowrap}
 dialog{
   border:1px solid var(--border-2);border-radius:12px;background:var(--surface);color:var(--text);
   padding:0;max-width:560px;width:calc(100% - 32px);box-shadow:0 12px 40px rgba(0,0,0,.25);
@@ -192,6 +193,7 @@ dialog code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-s
   <span class="n" id="nsel">0</span>
   <span class="det" id="detsel">questão selecionada</span>
   <input id="urlbase" placeholder="https://usuario.github.io/repo/img/" title="URL pública base das imagens">
+  <span id="urlAviso" hidden></span>
   <button class="btn" id="btnLimpar">Limpar</button>
   <button class="btn" id="btnCsv">Baixar .xlsx</button>
   <button class="btn primary" id="btnAjuda">Enviar ao Wayground</button>
@@ -231,17 +233,28 @@ document.getElementById('btnTema').onclick=()=>{
   localStorage.setItem(LS_TEMA,novo);
 };
 
+const ehLocal=h=>h==='localhost'||h==='127.0.0.1'||h==='[::1]'||h.endsWith('.localhost')||h==='';
+function avisaUrl(){
+  const el=document.getElementById('urlbase'), v=el.value.trim(), av=document.getElementById('urlAviso');
+  let m='';
+  try{ if(v && ehLocal(new URL(v).hostname)) m='URL local — o Wayground não alcança'; }
+  catch(e){ if(v) m='URL inválida'; }
+  av.textContent=m; av.hidden=!m;
+  el.style.borderColor = m ? 'var(--danger)' : '';
+}
 const chave=q=>q.v+'|'+q.d+'|'+q.a;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 fetch('dados.json').then(r=>r.json()).then(d=>{
   DADOS=d;
   try{ SEL=new Set(JSON.parse(localStorage.getItem(LS_SEL)||'[]')); }catch(e){}
-  // pré-preenche com a própria origem quando a página está publicada
-  const auto = location.protocol.startsWith('http')
+  // pré-preenche com a própria origem, mas só quando ela é pública:
+  // uma URL de localhost não é alcançável pelo Wayground na hora de importar
+  const auto = (location.protocol.startsWith('http') && !ehLocal(location.hostname))
     ? location.href.replace(/[^/]*$/,'')+'img/' : '';
   const u=localStorage.getItem(LS_URL) || auto;
   if(u) document.getElementById('urlbase').value=u;
+  avisaUrl();
   const exp=d.questoes.filter(q=>q.way).length;
   document.getElementById('tagtot').textContent=`${d.questoes.length} questões · ${exp} exportáveis`;
   montaArvore(); render(); atualizaCarrinho();
@@ -367,11 +380,17 @@ function atualizaCarrinho(){
 }
 
 /* ---------- exportacao ---------- */
+document.getElementById('urlbase').addEventListener('input',avisaUrl);
 function urlBase(){
   let u=document.getElementById('urlbase').value.trim();
   if(u&&!u.endsWith('/')) u+='/';
   localStorage.setItem(LS_URL,u);
+  avisaUrl();
   return u;
+}
+function urlLocal(){
+  const u=document.getElementById('urlbase').value.trim();
+  try{ return !!u && ehLocal(new URL(u).hostname); }catch(e){ return false; }
 }
 function linhas(){
   const base=urlBase();
@@ -404,10 +423,13 @@ function baixaXlsx(){
 document.getElementById('btnCsv').onclick=baixaXlsx;
 document.getElementById('dlgBaixar').onclick=baixaXlsx;
 document.getElementById('btnAjuda').onclick=()=>{
-  const semUrl=!urlBase();
-  document.getElementById('dlgAviso').innerHTML= semUrl
-    ? '<b style="color:var(--warn)">Sem a URL pública das imagens</b>, a planilha sai sem a coluna <code>Image Link</code> e as questões chegam ao Wayground só com o texto de identificação. Preencha o campo de URL antes de baixar.'
-    : `As imagens serão lidas de <code>${esc(urlBase())}</code> — essa URL precisa estar pública no momento da importação.`;
+  const base=urlBase();
+  document.getElementById('dlgAviso').innerHTML =
+    !base
+      ? '<b style="color:var(--warn)">Sem a URL pública das imagens</b>, a planilha sai sem a coluna <code>Image Link</code> e as questões chegam ao Wayground só com o texto de identificação. Preencha o campo de URL antes de baixar.'
+    : urlLocal()
+      ? `<b style="color:var(--danger)">A URL aponta para a sua máquina</b> (<code>${esc(base)}</code>). O Wayground não consegue alcançá-la e as imagens chegariam quebradas. Troque pela URL pública antes de baixar.`
+      : `As imagens serão lidas de <code>${esc(base)}</code> — essa URL precisa estar pública no momento da importação.`;
   document.getElementById('dlg').showModal();
 };
 document.getElementById('dlgFechar').onclick=()=>document.getElementById('dlg').close();
