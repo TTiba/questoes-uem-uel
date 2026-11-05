@@ -35,7 +35,6 @@ body{
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer}
 
-/* ---------- topo ---------- */
 header{
   position:sticky; top:0; z-index:30; background:var(--surface);
   border-bottom:1px solid var(--border); padding:10px 16px;
@@ -43,15 +42,9 @@ header{
 }
 header h1{font-size:15px;margin:0;font-weight:650;letter-spacing:-.01em;white-space:nowrap}
 header .tag{font-size:12px;color:var(--muted);background:var(--surface-2);padding:2px 8px;border-radius:99px;border:1px solid var(--border)}
-#busca{
-  flex:1; min-width:180px; padding:7px 11px; border:1px solid var(--border-2);
-  border-radius:var(--r); background:var(--bg);
-}
+#busca{flex:1;min-width:180px;padding:7px 11px;border:1px solid var(--border-2);border-radius:var(--r);background:var(--bg)}
 #busca:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
-.btn{
-  padding:7px 13px;border:1px solid var(--border-2);border-radius:var(--r);
-  background:var(--surface-2);font-size:13.5px;font-weight:500;white-space:nowrap;
-}
+.btn{padding:7px 13px;border:1px solid var(--border-2);border-radius:var(--r);background:var(--surface-2);font-size:13.5px;font-weight:500;white-space:nowrap}
 .btn:hover{border-color:var(--muted)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.primary{color:#07140f}}
@@ -59,107 +52,87 @@ header .tag{font-size:12px;color:var(--muted);background:var(--surface-2);paddin
 .btn.primary:hover{filter:brightness(1.08)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 
-/* ---------- layout ---------- */
-main{display:flex;align-items:flex-start;gap:0}
+main{display:flex;align-items:flex-start}
 aside{
-  width:var(--sidebar); flex:none; position:sticky; top:53px; align-self:flex-start;
-  height:calc(100vh - 53px); overflow-y:auto; border-right:1px solid var(--border);
-  background:var(--surface); padding:12px;
+  width:var(--sidebar);flex:none;position:sticky;top:53px;align-self:flex-start;
+  height:calc(100vh - 53px);overflow-y:auto;border-right:1px solid var(--border);
+  background:var(--surface);padding:12px;
 }
-section#lista{flex:1;min-width:0;padding:16px;padding-bottom:120px}
+section#lista{flex:1;min-width:0;padding:16px;padding-bottom:130px}
 
-/* ---------- arvore ---------- */
 .ar-h{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:650;margin:2px 0 8px}
 details.vest{margin-bottom:6px}
-details.vest>summary{
-  font-weight:650;font-size:14px;padding:6px 8px;border-radius:var(--r);
-  background:var(--surface-2);list-style:none;display:flex;align-items:center;gap:6px;
-}
+details.vest>summary{font-weight:650;font-size:14px;padding:6px 8px;border-radius:var(--r);background:var(--surface-2);list-style:none;display:flex;align-items:center;gap:6px}
 details.vest>summary::-webkit-details-marker{display:none}
 details.vest>summary::before{content:"▸";font-size:11px;color:var(--muted);transition:transform .12s}
 details.vest[open]>summary::before{transform:rotate(90deg)}
 details.disc{margin:2px 0 2px 6px}
-details.disc>summary{
-  font-size:13.5px;padding:4px 6px;border-radius:6px;list-style:none;
-  display:flex;align-items:center;gap:6px;
-}
+details.disc>summary{font-size:13.5px;padding:4px 6px;border-radius:6px;list-style:none;display:flex;align-items:center;gap:6px}
 details.disc>summary::-webkit-details-marker{display:none}
 details.disc>summary::before{content:"▸";font-size:10px;color:var(--muted);transition:transform .12s}
 details.disc[open]>summary::before{transform:rotate(90deg)}
 details.disc>summary:hover{background:var(--surface-2)}
 .disc-nome{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cnt{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
-label.assunto{
-  display:flex;gap:7px;align-items:flex-start;padding:3px 6px 3px 20px;
-  border-radius:6px;font-size:13px;cursor:pointer;line-height:1.35;
-}
+label.assunto{display:flex;gap:7px;align-items:flex-start;padding:3px 6px 3px 20px;border-radius:6px;font-size:13px;cursor:pointer;line-height:1.35}
 label.assunto:hover{background:var(--surface-2)}
 label.assunto input{margin:2px 0 0;flex:none;accent-color:var(--accent)}
 label.assunto span.t{flex:1;min-width:0}
 summary input{accent-color:var(--accent);margin:0}
 
-/* ---------- questoes ---------- */
-.barra{
-  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
-  margin-bottom:14px;font-size:13px;color:var(--muted);
-}
+.barra{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-size:13px;color:var(--muted)}
 .barra label{display:flex;gap:5px;align-items:center;cursor:pointer}
 .barra input[type=checkbox]{accent-color:var(--accent)}
-.q{
-  background:var(--surface);border:1px solid var(--border);border-radius:10px;
-  margin-bottom:14px;overflow:hidden;
-}
+
+.q{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden}
 .q.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
-.q-top{
-  display:flex;gap:10px;align-items:center;padding:9px 12px;
-  background:var(--surface-2);border-bottom:1px solid var(--border);flex-wrap:wrap;
-}
+.q-top{display:flex;gap:10px;align-items:center;padding:9px 12px;background:var(--surface-2);border-bottom:1px solid var(--border);flex-wrap:wrap}
 .q-top input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);flex:none;cursor:pointer}
 .q-meta{flex:1;min-width:0;font-size:12.5px;line-height:1.35}
 .q-meta b{font-weight:600}
 .q-meta .sub{color:var(--muted);font-size:11.5px}
-.pill{
-  font-size:11px;padding:2px 7px;border-radius:99px;border:1px solid var(--border-2);
-  background:var(--bg);white-space:nowrap;font-weight:500;
-}
+.pill{font-size:11px;padding:2px 7px;border-radius:99px;border:1px solid var(--border-2);background:var(--bg);white-space:nowrap;font-weight:500}
 .pill.gab{background:var(--accent-soft);border-color:transparent;color:var(--accent);font-variant-numeric:tabular-nums}
-.pill.orfa{background:var(--warn-soft);border-color:transparent;color:var(--warn)}
+.pill.alerta{background:var(--warn-soft);border-color:transparent;color:var(--warn)}
 .pill.naoexp{background:transparent;color:var(--danger);border-color:var(--danger)}
-.q-img{padding:10px 12px;background:#fff;text-align:center}
-.q-img img{max-width:100%;height:auto;display:block;margin:0 auto;border-radius:4px}
+
+.q-corpo{padding:12px 14px}
+.enun{margin:0 0 10px;line-height:1.55;white-space:pre-wrap}
+.q-fig{margin:10px 0;text-align:center;background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px}
+.q-fig img{max-width:100%;height:auto;display:block;margin:0 auto}
+ol.alts{list-style:none;margin:0;padding:0}
+ol.alts li{display:flex;gap:8px;padding:4px 6px;border-radius:5px;line-height:1.5}
+ol.alts li .rot{flex:none;font-weight:650;font-variant-numeric:tabular-nums;min-width:1.9em;color:var(--muted)}
+ol.alts li.ok{background:var(--accent-soft)}
+ol.alts li.ok .rot{color:var(--accent)}
 .vazio{color:var(--muted);text-align:center;padding:60px 20px;font-size:14px}
 
-/* ---------- carrinho ---------- */
 #carrinho{
-  position:fixed;left:var(--sidebar);right:0;bottom:0;z-index:25;
-  background:var(--surface);border-top:1px solid var(--border-2);
-  padding:10px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
-  box-shadow:0 -2px 12px rgba(0,0,0,.07);
+  position:fixed;left:var(--sidebar);right:0;bottom:0;z-index:25;background:var(--surface);
+  border-top:1px solid var(--border-2);padding:10px 16px;display:flex;gap:10px;align-items:center;
+  flex-wrap:wrap;box-shadow:0 -2px 12px rgba(0,0,0,.07);
 }
 #carrinho .n{font-weight:650;font-variant-numeric:tabular-nums}
 #carrinho .det{font-size:12.5px;color:var(--muted)}
-#urlbase{
-  padding:5px 9px;border:1px solid var(--border-2);border-radius:6px;
-  background:var(--bg);font-size:12.5px;min-width:230px;flex:1;max-width:420px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-}
+#urlbase{padding:5px 9px;border:1px solid var(--border-2);border-radius:6px;background:var(--bg);font-size:12.5px;min-width:200px;flex:1;max-width:360px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 #urlAviso{font-size:12px;color:var(--danger);font-weight:500;white-space:nowrap}
-dialog{
-  border:1px solid var(--border-2);border-radius:12px;background:var(--surface);color:var(--text);
-  padding:0;max-width:560px;width:calc(100% - 32px);box-shadow:0 12px 40px rgba(0,0,0,.25);
-}
+
+dialog{border:1px solid var(--border-2);border-radius:12px;background:var(--surface);color:var(--text);padding:0;max-width:560px;width:calc(100% - 32px);box-shadow:0 12px 40px rgba(0,0,0,.25)}
 dialog::backdrop{background:rgba(0,0,0,.45)}
 dialog .dlg-b{padding:18px 20px}
 dialog h2{margin:0 0 10px;font-size:16px}
 dialog p{margin:0 0 10px;font-size:13.5px;color:var(--muted);line-height:1.55}
-dialog ol{margin:0 0 12px;padding-left:20px;font-size:13.5px;line-height:1.7}
+dialog ol.passos{margin:0 0 12px;padding-left:20px;font-size:13.5px;line-height:1.7}
 dialog code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-size:12.5px}
 .dlg-f{display:flex;gap:8px;justify-content:flex-end;padding:12px 20px;border-top:1px solid var(--border);background:var(--surface-2)}
+.op{display:flex;gap:7px;align-items:center;font-size:13.5px;margin:0 0 8px}
+.op input{accent-color:var(--accent)}
+
 @media (max-width:820px){
-  aside{position:static;width:100%;height:auto;max-height:46vh;border-right:0;border-bottom:1px solid var(--border)}
+  aside{position:static;width:100%;height:auto;max-height:44vh;border-right:0;border-bottom:1px solid var(--border)}
   main{flex-direction:column}
   #carrinho{left:0}
-  section#lista{padding:12px;padding-bottom:150px}
+  section#lista{padding:12px;padding-bottom:160px}
 }
 </style>
 </head>
@@ -167,7 +140,7 @@ dialog code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-s
 <header>
   <h1>Banco de Questões</h1>
   <span class="tag" id="tagtot">carregando…</span>
-  <input id="busca" type="search" placeholder="Buscar no enunciado das questões…" autocomplete="off">
+  <input id="busca" type="search" placeholder="Buscar no enunciado e nas alternativas…" autocomplete="off">
   <button class="btn" id="btnTema" title="Alternar tema">◐</button>
 </header>
 
@@ -180,8 +153,9 @@ dialog code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-s
   <section id="lista">
     <div class="barra" id="barra" hidden>
       <span id="resumo"></span>
-      <label><input type="checkbox" id="fOrfa"> ocultar órfãs de texto-base</label>
       <label><input type="checkbox" id="fExp"> só exportáveis</label>
+      <label><input type="checkbox" id="fFig"> só com figura</label>
+      <label><input type="checkbox" id="fGab" checked> mostrar gabarito</label>
       <button class="btn" id="selTodas">Selecionar todas</button>
       <button class="btn" id="limpaFiltro">Limpar assuntos</button>
     </div>
@@ -192,10 +166,11 @@ dialog code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-s
 <div id="carrinho">
   <span class="n" id="nsel">0</span>
   <span class="det" id="detsel">questão selecionada</span>
-  <input id="urlbase" placeholder="https://usuario.github.io/repo/img/" title="URL pública base das imagens">
+  <input id="urlbase" placeholder="https://usuario.github.io/repo/img/" title="URL pública das imagens">
   <span id="urlAviso" hidden></span>
   <button class="btn" id="btnLimpar">Limpar</button>
-  <button class="btn" id="btnCsv">Baixar .xlsx</button>
+  <button class="btn" id="btnPdf">Baixar PDF</button>
+  <button class="btn" id="btnXlsx">Baixar .xlsx</button>
   <button class="btn primary" id="btnAjuda">Enviar ao Wayground</button>
 </div>
 
@@ -203,14 +178,14 @@ dialog code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-s
   <div class="dlg-b">
     <h2>Levar a lista para o Wayground</h2>
     <p id="dlgAviso"></p>
-    <ol>
-      <li>Baixe o <b>.xlsx</b> (botão ao lado) — ele já vem no template oficial.</li>
+    <ol class="passos">
+      <li>Baixe o <b>.xlsx</b> — ele já vem no template oficial.</li>
       <li>No Wayground: <code>Create</code> → <code>Assessment</code> → <code>Start from scratch</code>.</li>
       <li>Role a página de tipos de questão até o fim, até <b>Import existing files</b>.</li>
       <li>Escolha <b>Spreadsheet</b> → <code>Upload from Device</code> e envie o arquivo.</li>
       <li>Revise a prévia, clique <code>Continue</code> e depois <code>Publish</code>.</li>
     </ol>
-    <p>O gabarito vai na coluna <code>Correct Answer</code> e entra já marcado. As questões da UEM entram como <code>Checkbox</code> (somatório = múltipla resposta) e as da UEL como <code>Multiple Choice</code>.</p>
+    <p>O enunciado e as alternativas vão como <b>texto</b>. A imagem só entra nas questões que têm figura ou tabela — e nessas o <code>Image Link</code> precisa estar público.</p>
   </div>
   <div class="dlg-f">
     <button class="btn" id="dlgFechar">Fechar</button>
@@ -218,11 +193,24 @@ dialog code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-s
   </div>
 </dialog>
 
+<dialog id="dlgPdf">
+  <div class="dlg-b">
+    <h2>Gerar PDF da lista</h2>
+    <label class="op"><input type="checkbox" id="pdfGab" checked> Incluir folha de gabarito no fim</label>
+    <label class="op"><input type="checkbox" id="pdfFonte" checked> Mostrar a origem de cada questão (prova e número)</label>
+    <label class="op"><input type="checkbox" id="pdfImg" checked> Incluir as figuras</label>
+    <p>Abre a janela de impressão do navegador. Escolha <b>Salvar como PDF</b> no destino.</p>
+  </div>
+  <div class="dlg-f">
+    <button class="btn" id="pdfFechar">Cancelar</button>
+    <button class="btn primary" id="pdfGerar">Gerar</button>
+  </div>
+</dialog>
+
 <script>
 const LS_SEL='bq.sel', LS_URL='bq.url', LS_TEMA='bq.tema';
 let DADOS=null, SEL=new Set(), ASSUNTOS=new Set(), BUSCA='';
 
-/* tema */
 const temaSalvo=localStorage.getItem(LS_TEMA);
 if(temaSalvo) document.documentElement.dataset.theme=temaSalvo;
 document.getElementById('btnTema').onclick=()=>{
@@ -242,29 +230,30 @@ function avisaUrl(){
   av.textContent=m; av.hidden=!m;
   el.style.borderColor = m ? 'var(--danger)' : '';
 }
+function urlLocal(){
+  const u=document.getElementById('urlbase').value.trim();
+  try{ return !!u && ehLocal(new URL(u).hostname); }catch(e){ return false; }
+}
 const chave=q=>q.v+'|'+q.d+'|'+q.a;
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 fetch('dados.json').then(r=>r.json()).then(d=>{
   DADOS=d;
   try{ SEL=new Set(JSON.parse(localStorage.getItem(LS_SEL)||'[]')); }catch(e){}
-  // pré-preenche com a própria origem, mas só quando ela é pública:
-  // uma URL de localhost não é alcançável pelo Wayground na hora de importar
-  const auto = (location.protocol.startsWith('http') && !ehLocal(location.hostname))
+  const auto=(location.protocol.startsWith('http') && !ehLocal(location.hostname))
     ? location.href.replace(/[^/]*$/,'')+'img/' : '';
   const u=localStorage.getItem(LS_URL) || auto;
   if(u) document.getElementById('urlbase').value=u;
   avisaUrl();
-  const exp=d.questoes.filter(q=>q.way).length;
-  document.getElementById('tagtot').textContent=`${d.questoes.length} questões · ${exp} exportáveis`;
+  const exp=d.questoes.filter(q=>q.way).length, fig=d.questoes.filter(q=>q.img).length;
+  document.getElementById('tagtot').textContent=`${d.questoes.length} questões · ${exp} exportáveis · ${fig} com figura`;
   montaArvore(); render(); atualizaCarrinho();
-}).catch(e=>{
+}).catch(()=>{
   document.getElementById('qs').innerHTML='<div class="vazio">Não consegui carregar <code>dados.json</code>.<br>Sirva a pasta por HTTP — abrir o arquivo direto no navegador bloqueia o fetch.</div>';
 });
 
 function montaArvore(){
-  const cont=document.getElementById('arvore');
-  const porAssunto={};
+  const cont=document.getElementById('arvore'), porAssunto={};
   DADOS.questoes.forEach(q=>{ porAssunto[chave(q)]=(porAssunto[chave(q)]||0)+1; });
   let html='';
   for(const v of Object.keys(DADOS.arvore).sort()){
@@ -272,9 +261,8 @@ function montaArvore(){
     const totV=Object.keys(discs).reduce((s,d)=>s+discs[d].reduce((x,a)=>x+(porAssunto[v+'|'+d+'|'+a]||0),0),0);
     html+=`<details class="vest" open><summary>${esc(v)} <span class="cnt">${totV}</span></summary>`;
     for(const d of Object.keys(discs).sort()){
-      const as=discs[d];
-      const totD=as.reduce((x,a)=>x+(porAssunto[v+'|'+d+'|'+a]||0),0);
-      html+=`<details class="disc"><summary><input type="checkbox" class="chkDisc" data-v="${esc(v)}" data-d="${esc(d)}" title="Marcar toda a disciplina"><span class="disc-nome">${esc(d)}</span><span class="cnt">${totD}</span></summary>`;
+      const as=discs[d], totD=as.reduce((x,a)=>x+(porAssunto[v+'|'+d+'|'+a]||0),0);
+      html+=`<details class="disc"><summary><input type="checkbox" class="chkDisc" data-v="${esc(v)}" data-d="${esc(d)}" title="Marcar a disciplina toda"><span class="disc-nome">${esc(d)}</span><span class="cnt">${totD}</span></summary>`;
       for(const a of as){
         const k=v+'|'+d+'|'+a;
         html+=`<label class="assunto"><input type="checkbox" class="chkA" value="${esc(k)}"><span class="t">${esc(a)}</span><span class="cnt">${porAssunto[k]||0}</span></label>`;
@@ -309,7 +297,7 @@ function sincDisc(){
 }
 
 document.getElementById('busca').addEventListener('input',e=>{ BUSCA=e.target.value.trim().toLowerCase(); render(); });
-['fOrfa','fExp'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+['fExp','fFig','fGab'].forEach(id=>document.getElementById(id).addEventListener('change',render));
 document.getElementById('limpaFiltro').onclick=()=>{
   ASSUNTOS.clear();
   document.querySelectorAll('.chkA,.chkDisc').forEach(c=>{c.checked=false;c.indeterminate=false;});
@@ -322,23 +310,30 @@ function filtradas(){
   if(ASSUNTOS.size) qs=qs.filter(q=>ASSUNTOS.has(chave(q)));
   else if(!BUSCA) return [];
   if(BUSCA) qs=qs.filter(q=>q.busca.includes(BUSCA)||q.a.toLowerCase().includes(BUSCA));
-  if(document.getElementById('fOrfa').checked) qs=qs.filter(q=>!q.orfa);
   if(document.getElementById('fExp').checked) qs=qs.filter(q=>q.way);
+  if(document.getElementById('fFig').checked) qs=qs.filter(q=>q.img);
   return qs;
 }
 
+function corretas(q){
+  if(!q.way) return new Set();
+  return new Set(q.way.corretas.split(',').map(x=>parseInt(x,10)-1));
+}
+
 function render(){
-  const qs=filtradas(), cont=document.getElementById('qs'), barra=document.getElementById('barra');
-  barra.hidden=!(ASSUNTOS.size||BUSCA);
+  const qs=filtradas(), cont=document.getElementById('qs');
+  const mostraGab=document.getElementById('fGab').checked;
+  document.getElementById('barra').hidden=!(ASSUNTOS.size||BUSCA);
   if(!qs.length){
     cont.innerHTML=`<div class="vazio">${ASSUNTOS.size||BUSCA?'Nenhuma questão com esses filtros.':'Escolha assuntos na árvore à esquerda, ou busque por um termo.'}</div>`;
-    document.getElementById('resumo').textContent='';
-    return;
+    document.getElementById('resumo').textContent=''; return;
   }
-  const norfa=qs.filter(q=>q.orfa).length, nexp=qs.filter(q=>q.way).length;
-  document.getElementById('resumo').innerHTML=`<b>${qs.length}</b> questões · ${nexp} exportáveis${norfa?` · <span style="color:var(--warn)">${norfa} sem texto-base</span>`:''}`;
+  document.getElementById('resumo').innerHTML=
+    `<b>${qs.length}</b> questões · ${qs.filter(q=>q.way).length} exportáveis · ${qs.filter(q=>q.img).length} com figura`;
   cont.innerHTML=qs.map(q=>{
-    const on=SEL.has(q.id);
+    const on=SEL.has(q.id), cs=corretas(q);
+    const alts=(q.alts||[]).map(([r,t],i)=>
+      `<li class="${mostraGab&&cs.has(i)?'ok':''}"><span class="rot">${esc(r)})</span><span>${esc(t)}</span></li>`).join('');
     return `<article class="q${on?' sel':''}" data-id="${q.id}">
       <div class="q-top">
         <input type="checkbox" ${on?'checked':''} aria-label="Selecionar questão">
@@ -346,11 +341,17 @@ function render(){
           <b>${esc(q.d)} — ${esc(q.a)}</b><br>
           <span class="sub">${esc(q.p)} · Questão ${esc(q.n)}</span>
         </div>
-        <span class="pill gab">${esc(q.g||'—')}</span>
-        ${q.orfa?'<span class="pill orfa" title="A questão cita linhas ou se refere a um texto que não veio no recorte">sem texto-base</span>':''}
-        ${q.way?`<span class="pill">${q.way.tipo==='Checkbox'?'múltipla resposta':'múltipla escolha'}</span>`:'<span class="pill naoexp" title="Discursiva ou anulada — não vai para a planilha">não exportável</span>'}
+        ${mostraGab?`<span class="pill gab">${esc(q.g||'—')}</span>`:''}
+        ${q.img?`<span class="pill">${q.formula?'fórmula na imagem':'com figura'}</span>`:''}
+        ${q.formula?'<span class="pill alerta" title="Tem fração empilhada: o texto abaixo é aproximado, use a imagem como referência">conferir fórmula</span>':''}
+        ${q.cortada?'<span class="pill alerta" title="O recorte original cortou parte do texto à direita">texto incompleto</span>':''}
+        ${q.way?'':'<span class="pill naoexp" title="Discursiva, anulada ou sem alternativas legíveis">não exportável</span>'}
       </div>
-      <div class="q-img"><img loading="lazy" src="img/${q.img}" width="${q.w}" height="${q.h}" alt="Questão ${esc(q.n)} — ${esc(q.a)}"></div>
+      <div class="q-corpo">
+        <p class="enun">${esc(q.enun)}</p>
+        ${q.img?`<div class="q-fig"><img loading="lazy" src="img/${q.img}" width="${q.w}" height="${q.h}" alt="Figura da questão ${esc(q.n)}"></div>`:''}
+        ${alts?`<ol class="alts">${alts}</ol>`:''}
+      </div>
     </article>`;
   }).join('');
   cont.querySelectorAll('.q').forEach(el=>{
@@ -363,76 +364,137 @@ function render(){
   });
 }
 
-document.getElementById('selTodas').onclick=()=>{
-  filtradas().forEach(q=>SEL.add(q.id)); salvaSel(); render(); atualizaCarrinho();
-};
+document.getElementById('selTodas').onclick=()=>{ filtradas().forEach(q=>SEL.add(q.id)); salvaSel(); render(); atualizaCarrinho(); };
 document.getElementById('btnLimpar').onclick=()=>{ SEL.clear(); salvaSel(); render(); atualizaCarrinho(); };
 function salvaSel(){ localStorage.setItem(LS_SEL,JSON.stringify([...SEL])); }
-
 function selecionadas(){ return DADOS?DADOS.questoes.filter(q=>SEL.has(q.id)):[]; }
 function atualizaCarrinho(){
   const s=selecionadas(), exp=s.filter(q=>q.way).length;
   document.getElementById('nsel').textContent=s.length;
   document.getElementById('detsel').textContent=
     s.length===1?'questão selecionada':`questões selecionadas — ${exp} vão para a planilha`;
-  document.getElementById('btnCsv').disabled=!exp;
+  document.getElementById('btnXlsx').disabled=!exp;
   document.getElementById('btnAjuda').disabled=!exp;
+  document.getElementById('btnPdf').disabled=!s.length;
 }
 
-/* ---------- exportacao ---------- */
+/* ---------------- exportação: planilha ---------------- */
 document.getElementById('urlbase').addEventListener('input',avisaUrl);
 function urlBase(){
   let u=document.getElementById('urlbase').value.trim();
   if(u&&!u.endsWith('/')) u+='/';
-  localStorage.setItem(LS_URL,u);
-  avisaUrl();
-  return u;
+  localStorage.setItem(LS_URL,u); avisaUrl(); return u;
 }
-function urlLocal(){
-  const u=document.getElementById('urlbase').value.trim();
-  try{ return !!u && ehLocal(new URL(u).hostname); }catch(e){ return false; }
-}
+const COLS=['Question Text','Question Type','Option 1','Option 2','Option 3','Option 4','Option 5','Correct Answer','Time in seconds','Image Link','Answer explanation'];
 function linhas(){
   const base=urlBase();
   return selecionadas().filter(q=>q.way).map(q=>{
     const w=q.way, o=w.opcoes;
-    const texto=(q.enun&&q.enun.length>12?q.enun:`${q.d} — ${q.a}`)+`  [${q.p} · questão ${q.n}]`;
     return {
-      'Question Text':texto,
+      'Question Text':q.enun,
       'Question Type':w.tipo,
-      'Option 1':o[0]||'', 'Option 2':o[1]||'', 'Option 3':o[2]||'',
-      'Option 4':o[3]||'', 'Option 5':o[4]||'',
+      'Option 1':o[0]||'','Option 2':o[1]||'','Option 3':o[2]||'','Option 4':o[3]||'','Option 5':o[4]||'',
       'Correct Answer':w.corretas,
       'Time in seconds':'',
-      'Image Link':base?base+q.img:'',
+      'Image Link':(q.img&&base)?base+q.img:'',
       'Answer explanation':`Gabarito oficial: ${q.g} (${q.p}, questão ${q.n})`,
     };
   });
 }
-const COLS=['Question Text','Question Type','Option 1','Option 2','Option 3','Option 4','Option 5','Correct Answer','Time in seconds','Image Link','Answer explanation'];
 function baixaXlsx(){
-  const dados=linhas();
-  if(!dados.length) return;
+  const dados=linhas(); if(!dados.length) return;
   const ws=XLSX.utils.json_to_sheet(dados,{header:COLS});
-  ws['!cols']=[{wch:60},{wch:16},{wch:10},{wch:10},{wch:10},{wch:10},{wch:10},{wch:14},{wch:14},{wch:52},{wch:46}];
-  const wb=XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb,ws,'Questions');
-  const d=new Date().toISOString().slice(0,10);
-  XLSX.writeFile(wb,`lista-wayground-${d}-${dados.length}q.xlsx`);
+  ws['!cols']=[{wch:70},{wch:16},{wch:34},{wch:34},{wch:34},{wch:34},{wch:34},{wch:14},{wch:13},{wch:50},{wch:46}];
+  const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,'Questions');
+  XLSX.writeFile(wb,`lista-wayground-${new Date().toISOString().slice(0,10)}-${dados.length}q.xlsx`);
 }
-document.getElementById('btnCsv').onclick=baixaXlsx;
+document.getElementById('btnXlsx').onclick=baixaXlsx;
 document.getElementById('dlgBaixar').onclick=baixaXlsx;
 document.getElementById('btnAjuda').onclick=()=>{
-  const base=urlBase();
+  const base=urlBase(), comFig=selecionadas().filter(q=>q.way&&q.img).length;
   document.getElementById('dlgAviso').innerHTML =
-    !base
-      ? '<b style="color:var(--warn)">Sem a URL pública das imagens</b>, a planilha sai sem a coluna <code>Image Link</code> e as questões chegam ao Wayground só com o texto de identificação. Preencha o campo de URL antes de baixar.'
-    : urlLocal()
-      ? `<b style="color:var(--danger)">A URL aponta para a sua máquina</b> (<code>${esc(base)}</code>). O Wayground não consegue alcançá-la e as imagens chegariam quebradas. Troque pela URL pública antes de baixar.`
-      : `As imagens serão lidas de <code>${esc(base)}</code> — essa URL precisa estar pública no momento da importação.`;
+    comFig===0 ? 'Nenhuma das questões selecionadas tem figura, então a planilha vai inteira como texto e a URL das imagens não faz diferença.'
+    : !base ? `<b style="color:var(--warn)">${comFig} questões têm figura</b> e, sem a URL pública, elas chegariam sem a imagem. Preencha o campo antes de baixar.`
+    : urlLocal() ? `<b style="color:var(--danger)">A URL aponta para a sua máquina.</b> O Wayground não a alcança e as ${comFig} figuras chegariam quebradas.`
+    : `As ${comFig} figuras serão lidas de <code>${esc(base)}</code> — essa URL precisa estar pública na hora da importação.`;
   document.getElementById('dlg').showModal();
 };
 document.getElementById('dlgFechar').onclick=()=>document.getElementById('dlg').close();
+
+/* ---------------- exportação: PDF ---------------- */
+document.getElementById('btnPdf').onclick=()=>document.getElementById('dlgPdf').showModal();
+document.getElementById('pdfFechar').onclick=()=>document.getElementById('dlgPdf').close();
+document.getElementById('pdfGerar').onclick=()=>{
+  document.getElementById('dlgPdf').close();
+  gerarPdf({
+    gabarito:document.getElementById('pdfGab').checked,
+    fonte:document.getElementById('pdfFonte').checked,
+    figuras:document.getElementById('pdfImg').checked,
+  });
+};
+function gerarPdf(op){
+  const qs=selecionadas(); if(!qs.length) return;
+  const base=location.href.replace(/[^/]*$/,'');
+  const hoje=new Date().toLocaleDateString('pt-BR');
+  const corpo=qs.map((q,i)=>{
+    const alts=(q.alts||[]).map(([r,t])=>
+      `<li><span class="r">${esc(r)})</span><span>${esc(t)}</span></li>`).join('');
+    return `<article class="q">
+      <h3>Questão ${i+1}${op.fonte?` <span class="src">${esc(q.p)} · nº ${esc(q.n)} · ${esc(q.d)} — ${esc(q.a)}</span>`:''}</h3>
+      <p class="en">${esc(q.enun)}</p>
+      ${(op.figuras&&q.img)?`<div class="fig"><img src="${base}img/${q.img}" alt=""></div>`:''}
+      ${alts?`<ol class="alts">${alts}</ol>`:''}
+    </article>`;
+  }).join('');
+  const gab=qs.map((q,i)=>{
+    let r='—';
+    if(q.way){ const idx=q.way.corretas.split(','); r=idx.map(n=>q.way.rotulos[+n-1]||n).join(', '); }
+    else if(q.g) r=q.g;
+    return `<tr><td>${i+1}</td><td>${esc(r)}</td><td>${esc(q.g||'')}</td></tr>`;
+  }).join('');
+  const html=`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Lista de exercícios — ${qs.length} questões</title>
+<style>
+  @page{margin:18mm 16mm}
+  *{box-sizing:border-box}
+  body{font:11.5pt/1.5 Georgia,"Times New Roman",serif;color:#000;margin:0}
+  h1{font-size:16pt;margin:0 0 2mm}
+  .cab{border-bottom:1.5pt solid #000;padding-bottom:3mm;margin-bottom:6mm}
+  .cab .meta{font:9.5pt/1.4 system-ui,sans-serif;color:#444}
+  .q{margin:0 0 7mm;page-break-inside:avoid;break-inside:avoid}
+  .q h3{font:bold 11pt/1.3 system-ui,sans-serif;margin:0 0 1.5mm}
+  .q h3 .src{font-weight:400;color:#555;font-size:8.5pt}
+  .en{margin:0 0 2mm;text-align:justify;white-space:pre-wrap}
+  .fig{text-align:center;margin:3mm 0}
+  .fig img{max-width:100%;max-height:95mm;height:auto}
+  ol.alts{list-style:none;margin:1mm 0 0;padding:0}
+  ol.alts li{display:flex;gap:2.5mm;margin:0 0 1mm;text-align:justify}
+  ol.alts li .r{flex:none;font-weight:bold;min-width:2.2em}
+  .gabarito{page-break-before:always;break-before:page}
+  .gabarito h2{font:bold 13pt system-ui,sans-serif;border-bottom:1pt solid #000;padding-bottom:2mm}
+  table{border-collapse:collapse;font:10pt system-ui,sans-serif;width:100%}
+  th,td{border:.6pt solid #999;padding:1.6mm 2.5mm;text-align:left}
+  th{background:#eee}
+  @media print{ .aviso{display:none} }
+  .aviso{font:10pt system-ui,sans-serif;background:#fff6d8;border:1px solid #e3c766;padding:8px 12px;margin:0 0 6mm;border-radius:5px}
+</style></head><body>
+<div class="aviso">Use <b>Salvar como PDF</b> no destino da impressão. Esta faixa não sai no arquivo.</div>
+<div class="cab">
+  <h1>Lista de exercícios</h1>
+  <div class="meta">${qs.length} questões · UEM e UEL · gerada em ${hoje}</div>
+</div>
+${corpo}
+${op.gabarito?`<section class="gabarito"><h2>Gabarito</h2><table>
+  <thead><tr><th style="width:4em">Questão</th><th style="width:9em">Resposta</th><th>Gabarito oficial da banca</th></tr></thead>
+  <tbody>${gab}</tbody></table></section>`:''}
+</body></html>`;
+  const w=window.open('','_blank');
+  if(!w){ alert('O navegador bloqueou a janela. Permita pop-ups neste site e tente de novo.'); return; }
+  w.document.write(html); w.document.close();
+  const imgs=[...w.document.images];
+  const pronto=Promise.all(imgs.map(i=>i.complete?null:new Promise(r=>{i.onload=i.onerror=r})));
+  Promise.race([pronto, new Promise(r=>setTimeout(r,6000))]).then(()=>{ w.focus(); w.print(); });
+}
 </script>
 </body>
 </html>
